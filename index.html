@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TradeX - Stock Trading Platform</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="nav-container">
+            <div class="logo">TradeX</div>
+            <nav>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="#" class="nav-link">Dashboard</a></li>
+                    <li><a href="#" class="nav-link">Portfolio</a></li>
+                    <li><a href="#" class="nav-link">Markets</a></li>
+                    <li><a href="#" class="nav-link">Orders</a></li>
+                </ul>
+            </nav>
+            <div class="user-menu">
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <button class="profile-btn" id="profileBtn">
+                    <i class="fas fa-user"></i>
+                    <span id="userStatus">Login</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Login/Register Modal -->
+    <div class="modal" id="authModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="modalTitle">Login to your account</h2>
+                <p class="modal-subtitle" id="modalSubtitle">Welcome back! Please sign in to your account</p>
+            </div>
+            <form id="authForm">
+    <div class="form-group">
+        <label class="form-label">Email</label>
+        <input type="email" class="form-input" id="email" required>
+    </div>
+    <div class="form-group username-group" style="display: none;">
+        <label class="form-label">Username</label>
+        <input type="text" class="form-input" id="username" minlength="3">
+    </div>
+    <div class="form-group">
+        <label class="form-label">Password</label>
+        <input type="password" class="form-input" id="password" required>
+    </div>
+    <button type="submit" class="auth-btn" id="authBtn">
+        <span id="authBtnText">Sign In</span>
+        <span class="loading" id="loadingSpinner" style="display: none;"></span>
+    </button>
+</form>
+            <div class="toggle-auth">
+                <span id="toggleAuth">Don't have an account? <strong>Sign up</strong></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dashboard Content -->
+    <main class="dashboard">
+        <div class="welcome-section">
+            <h1 class="welcome-title">Welcome Back, Trader!</h1>
+            <p class="welcome-subtitle">Your portfolio is ready to grow 🚀</p>
+        </div>
+
+        <div class="dashboard-content" id="dashboardContent">
+            <!-- Stats -->
+            <div class="stats-grid">
+                <div class="stat-card stat-balance">
+                    <div class="stat-icon">
+                        <i class="fas fa-wallet"></i>
+                    </div>
+                    <div class="stat-value" id="balance">$24,567.89</div>
+                    <div class="stat-change">Total Balance</div>
+                </div>
+                <div class="stat-card stat-gain">
+                    <div class="stat-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="stat-value positive" id="dailyGain">+$1,234.56</div>
+                    <div class="stat-change positive">24h Change</div>
+                </div>
+                <div class="stat-card stat-assets">
+                    <div class="stat-icon">
+                        <i class="fas fa-layer-group"></i>
+                    </div>
+                    <div class="stat-value" id="totalAssets">12</div>
+                    <div class="stat-change">Assets</div>
+                </div>
+                <div class="stat-card stat-orders">
+                    <div class="stat-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <div class="stat-value" id="activeOrders">3</div>
+                    <div class="stat-change">Active Orders</div>
+                </div>
+            </div>
+
+            <!-- Top Assets -->
+            <div class="section">
+                <div class="section-header">
+                    <h2 class="section-title">Top Assets</h2>
+                    <a href="#" class="nav-link">View All →</a>
+                </div>
+                <div class="assets-grid">
+                    <div class="asset-card" data-symbol="AAPL">
+                        <div class="asset-header">
+                            <div>
+                                <div class="asset-symbol">AAPL</div>
+                                <div class="asset-name">Apple Inc.</div>
+                            </div>
+                            <div class="asset-price">$175.42 <span class="price-change positive">+2.34%</span></div>
+                        </div>
+                        <div class="action-buttons">
+                            <button class="btn btn-buy">
+                                <i class="fas fa-plus"></i> Buy
+                            </button>
+                            <button class="btn btn-sell">
+                                <i class="fas fa-minus"></i> Sell
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="asset-card" data-symbol="TSLA">
+                        <div class="asset-header">
+                            <div>
+                                <div class="asset-symbol">TSLA</div>
+                                <div class="asset-name">Tesla Inc.</div>
+                            </div>
+                            <div class="asset-price">$248.91 <span class="price-change negative">-1.12%</span></div>
+                        </div>
+                        <div class="action-buttons">
+                            <button class="btn btn-buy">
+                                <i class="fas fa-plus"></i> Buy
+                            </button>
+                            <button class="btn btn-sell">
+                                <i class="fas fa-minus"></i> Sell
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="asset-card" data-symbol="GOOGL">
+                        <div class="asset-header">
+                            <div>
+                                <div class="asset-symbol">GOOGL</div>
+                                <div class="asset-name">Alphabet Inc.</div>
+                            </div>
+                            <div class="asset-price">$142.67 <span class="price-change positive">+0.89%</span></div>
+                        </div>
+                        <div class="action-buttons">
+                            <button class="btn btn-buy">
+                                <i class="fas fa-plus"></i> Buy
+                            </button>
+                            <button class="btn btn-sell">
+                                <i class="fas fa-minus"></i> Sell
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="asset-card" data-symbol="MSFT">
+                        <div class="asset-header">
+                            <div>
+                                <div class="asset-symbol">MSFT</div>
+                                <div class="asset-name">Microsoft Corp.</div>
+                            </div>
+                            <div class="asset-price">$312.45 <span class="price-change positive">+3.21%</span></div>
+                        </div>
+                        <div class="action-buttons">
+                            <button class="btn btn-buy">
+                                <i class="fas fa-plus"></i> Buy
+                            </button>
+                            <button class="btn btn-sell">
+                                <i class="fas fa-minus"></i> Sell
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
